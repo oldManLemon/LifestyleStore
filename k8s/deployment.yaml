@@ -11,7 +11,7 @@ metadata:
   name: lifestore
   namespace: development
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: lifestore
@@ -25,7 +25,9 @@ spec:
         image: dgopsdrew/store-front:v1
         envFrom:
         - secretRef:
-            name: env-vars        
+            name: env-vars
+        - configMapRef:
+            name: db-settings            
         resources:
           limits:
             memory: "128Mi"
@@ -76,4 +78,21 @@ spec:
     selector:
         app: lifestore
     type: LoadBalancer
+---    
+apiVersion: v1
+kind: Service
+metadata:
+    labels:
+        app: lifestore-db
+    name: lifestore-svc-db
+    namespace: development
+spec:
+    ports:
+    - port: 3306
+      protocol: TCP
+      targetPort: 3306
+    selector:
+        app: lifestore-db
+
+
 
