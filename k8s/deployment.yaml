@@ -55,7 +55,7 @@ spec:
         image: dgopsdrew/store-db:v1
         volumeMounts:
           - name: mysql-data
-            mountPath: /docker-entrypoint-initdb.d/
+            mountPath: /var/lib/mysql
         envFrom:
         - secretRef:
             name: env-vars
