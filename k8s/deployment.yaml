@@ -53,6 +53,9 @@ spec:
       containers:
       - name: lifestore-db
         image: dgopsdrew/store-db:v1
+        volumeMounts:
+          - name: mysql-data
+            mountPath: /docker-entrypoint-initdb.d/
         envFrom:
         - secretRef:
             name: env-vars
@@ -62,6 +65,24 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3306
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: mysql-data-claim
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-data-claim
+  namespace: development
+spec:
+  resources:
+    requests:
+      storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+            
 ---
 apiVersion: v1
 kind: Service
