@@ -6,3 +6,5 @@ metadata:
 data:
   MYSQL_HOST: {{ .Values.configMap.MYSQL_HOST  | quote}}
   MYSQL_HOST_PORT: {{ .Values.configMap.MYSQL_HOST_PORT | quote }}
+  MYSQL_HOST_PORT: {{ .Values.configMap.MYSQL_HOST_PORT | quote }}
+  MYSQL_DATABASE: "store"
