@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-config
+  namespace: {{ .Release.Namespace }}
+data:
+  MYSQL_HOST: {{ .Values.configMap.MYSQL_HOST  | quote}}
+  MYSQL_HOST_PORT: {{ .Values.configMap.MYSQL_HOST_PORT | quote }}
