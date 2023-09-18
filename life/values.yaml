@@ -1,6 +1,7 @@
-configMap:
-  MYSQL_HOST: lifestore-svc-db:3306
-  MYSQL_HOST_PORT: "3306"
+
+namespace:
+  enabled: false #true will enable namespace to passed in values.yaml
+  # name: my-namespace
 
 
 secrets:
