@@ -60,6 +60,9 @@ spec:
         envFrom:
         - secretRef:
             name: {{.Release.Name}}-db-secret
+        env:
+        - name: MYSQL_DATABASE
+          value: store    
         resources:
           limits:
             memory: "512Mi"
