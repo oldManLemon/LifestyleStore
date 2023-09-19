@@ -4,6 +4,5 @@ metadata:
   name: {{ .Release.Name }}-config
   namespace: {{ if .Values.namespace.enabled }}{{ .Values.namespace.name }}{{ else }}{{ .Release.Name }}{{ end }}
 data:  
-  MYSQL_HOST: {{ .Release.Name}}-lifestore-svc-db:3306
+  MYSQL_HOST: {{.Release.Name}}-lifestore-svc-db:3306
   MYSQL_DATABASE: "store"
-  TEST_SQL: happy
