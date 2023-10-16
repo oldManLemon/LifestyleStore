@@ -22,6 +22,31 @@ Then go to http://localhost:8080
 
 Default login not available yet. Create a user and you will be good to go. 
 
+# Running in Kubernetes
+
+Requirements:
+- A running cluster on the cloud or KIND, or Minikube for local development
+- Working Kubeconfig
+
+Run the following
+```bash 
+kubectl apply -f k8s/deployment.yaml
+kubectl apply -f k8s/db-cm.yaml
+kubectl apply -f k8s/secret.yaml
+```
+
+Your cluster will come up in short amount of time. 
+
+
+# Helm
+
+There is a helm chart included here for ease of use
+
+```bash
+cd life/
+helm install <name> . -f values.yml
+```
+Wait for about a minute for everything to come up. 
 
 ## Project Developers
 
