@@ -3,3 +3,9 @@ FROM mysql:latest
 
 # Copy data
 COPY database/store.sql /docker-entrypoint-initdb.d/
+
+#Start up Probe can be ping
+# Readiness probe should check if store db exists
+# Liveliness probe soll por 3306
+
+# Health check, do a health check SH, prove 
