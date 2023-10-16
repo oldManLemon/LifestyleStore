@@ -51,3 +51,9 @@ Wait for about a minute for everything to come up.
 ## Project Developers
 
 Sajal Agrawal & oldManLemon
+
+## Interesting Read
+
+### Probes
+https://srcco.de/posts/kubernetes-liveness-probes-are-dangerous.html
+https://www.civo.com/learn/practical-guide-to-the-kubernetes-probes
