@@ -65,10 +65,30 @@ spec:
             cpu: "500m"
         ports:
         - containerPort: 3306
+        livenessProbe:
+          exec:
+            command: 
+            - "/bin/sh"
+            - "-c"
+            - "mysql -u root -h lifestore-svc-db -p$(echo $MYSQL_PASSWORD) -e 'SELECT COUNT(*) FROM store.users'" # NEed to change out connection strings in config map so that that I don't have the host manually inputted
+            # ["mysql", "-u", "root","-p$(echo $MYSQL_PASSWORD)", "-e", "SELECT COUNT(*) FROM store.users"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+              - "/bin/sh"
+              - "-c"
+              - "mysql -u root -p$(echo $MYSQL_PASSWORD) -e 'SELECT 1'"
+          initialDelaySeconds: 15
+          periodSeconds: 10
+          timeoutSeconds: 5
+        
       volumes:
         - name: mysql-data
           persistentVolumeClaim:
-            claimName: mysql-data-claim
+            claimName: mysql-data-claim     
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
